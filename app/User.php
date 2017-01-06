@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Esensi\Model\Contracts\ValidatingModelInterface;
+use Esensi\Model\Traits\ValidatingModelTrait;
 
 class User extends Authenticatable
+	implements ValidatingModelInterface
 {
+	use ValidatingModelTrait;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +28,10 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $rules = [
+    	'email' => ['required','email','min:3','unique:users'],
     ];
 
     public function getAvatarUrl()
