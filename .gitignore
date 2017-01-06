@@ -1,5 +1,18 @@
+# Laravel ENV
+.env
+
+# Composer stuff
 /vendor
+
+# Node.js stuff
 /node_modules
+
+# Homestead stuff
 Homestead.yaml
 Homestead.json
-.env
+
+# Eclipse stuff
+.buildpath
+.project
+.settings/
+
