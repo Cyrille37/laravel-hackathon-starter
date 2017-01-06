@@ -12,7 +12,7 @@ class UserTableSeeder extends Seeder
 		$u->fullname = 'Aaron Swartz' ;
 		$u->username = 'Jottit' ;
 		$u->email = 'Aaron.Swartz@Internet.org';
-		$u->password = 'secret' ;
+		$u->password = bcrypt('secret') ;
 		//$table->char('gender')->nullable();
 		//$table->text('location')->nullable();
 		//$table->text('website')->nullable();
