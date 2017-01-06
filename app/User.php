@@ -32,6 +32,7 @@ class User extends Authenticatable
 
     protected $rules = [
     	'email' => ['required','email','min:3','unique:users'],
+    	'fullname' => ['required', 'min:3']
     ];
 
     public function getAvatarUrl()
@@ -39,7 +40,6 @@ class User extends Authenticatable
         if(is_null($this->avatar)) {
             return "http://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email))) . "?d=mm&s=40";
         }
-
         return $this->avatar;
     }
 

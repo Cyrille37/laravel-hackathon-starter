@@ -33,14 +33,18 @@ class AccountController extends Controller
      */
     public function updateProfile(Request $request)
     {
-        $this->validate($request, [
-            'email'     => 'required|email|min:3|unique:users,email,'. $this->id,
-            'fullname'  => 'required|min:3'
-        ]);
+    	error_log(__METHOD__);
 
-        $values = $request->all();
-        $this->user->fill($values)->save();
-
+        try
+        {
+        	$this->user->fill($request->all())->save();
+        }
+        catch( Exception $ex )
+        {
+        	error_log(__METHOD__.' ERROR');
+        	return redirect()->back()->withErrors($this->user->getErrors());
+        }
+        error_log(__METHOD__.' OK');
         return redirect()->back()->with('info','Your Profile has been updated successfully');
     }
 
