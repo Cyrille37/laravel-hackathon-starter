@@ -32,7 +32,7 @@ class User extends Authenticatable
 
     protected $rules = [
     	'email' => ['required','email','min:3','unique:users'],
-    	'fullname' => ['required', 'min:3']
+    	'fullname' => 'required|min:3'
     ];
 
     public function getAvatarUrl()

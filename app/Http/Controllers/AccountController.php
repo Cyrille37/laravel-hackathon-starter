@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Watson\Validating\ValidationException;
 use Auth;
 use Hash;
 use Cloudder;
@@ -11,6 +11,10 @@ use App\Http\Requests;
 
 class AccountController extends Controller
 {
+	/**
+	 * 
+	 * @var App\User
+	 */
     protected $user;
     protected $id;
 
@@ -37,12 +41,16 @@ class AccountController extends Controller
 
         try
         {
-        	$this->user->fill($request->all())->save();
+        	$this->user->fill($request->all())->saveOrFail();
         }
-        catch( Exception $ex )
+        catch( ValidationException $ex )
         {
         	error_log(__METHOD__.' ERROR');
-        	return redirect()->back()->withErrors($this->user->getErrors());
+        	//return redirect()->back()->withErrors($this->user->getErrors());
+        	
+        	return redirect()->to($this->getRedirectUrl())
+        	->withInput($request->input())
+        	->withErrors($this->user->getErrors());
         }
         error_log(__METHOD__.' OK');
         return redirect()->back()->with('info','Your Profile has been updated successfully');
