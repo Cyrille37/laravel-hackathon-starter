@@ -50,6 +50,7 @@ class AccountController extends Controller
         	
         	return redirect()->to($this->getRedirectUrl())
         	->withInput($request->input())
+        	->with('warning','Profile update failed, check below for errors')
         	->withErrors($this->user->getErrors());
         }
         error_log(__METHOD__.' OK');

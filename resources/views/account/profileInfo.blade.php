@@ -13,7 +13,7 @@
                 @endif
             </div>
         </div>
-        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+        <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
             <label for="fullname" class="col-sm-2 control-label">Name</label>
             <div class="col-sm-4">
                 <input type="text" name="fullname" id="name" value="{{ $account->fullname ?: old('fullname') }}" class="form-control">
