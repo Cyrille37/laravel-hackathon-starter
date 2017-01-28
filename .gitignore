@@ -15,4 +15,9 @@ Homestead.json
 .buildpath
 .project
 .settings/
+=======
+.env
+
+# barryvdh/laravel-ide-helper generated files
+_ide_helper.php
 
